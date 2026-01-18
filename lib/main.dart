@@ -1,6 +1,5 @@
 import 'package:app/features/auth/presentation/pages/singin_page.dart';
 import 'package:flutter/material.dart';
-import 'package:app/features/auth/presentation/pages/login_page.dart';
 import 'features/auth/auth_controller.dart';
 import 'package:provider/provider.dart';
 void main() {
