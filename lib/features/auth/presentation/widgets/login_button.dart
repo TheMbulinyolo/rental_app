@@ -13,19 +13,19 @@ class LoginButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: authController.isLoading ? null : onPressed,
-        child: authController.isLoading
-            ? const Center(
-                child: SizedBox(
-                  height: 20,
-                  width: 20,
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                    strokeWidth: 2,
-                  ),
+      onPressed: authController.isLoading ? null : onPressed,
+      child: authController.isLoading
+          ? const Center(
+              child: SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
                 ),
-              )
-            : const Text("Se connecter"),
+              ),
+            )
+          : const Text("Se connecter"),
       ),
     );
   }

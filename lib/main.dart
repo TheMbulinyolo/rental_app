@@ -1,3 +1,4 @@
+import 'package:app/features/auth/presentation/pages/singin_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app/features/auth/presentation/pages/login_page.dart';
 import 'features/auth/auth_controller.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rental App',
-      home: LoginPage(),
+      home: SinginPage(),
     );
   }
 }

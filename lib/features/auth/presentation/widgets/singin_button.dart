@@ -1,5 +1,6 @@
+import 'package:provider/provider.dart';
+import 'package:app/features/auth/auth_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class SinginButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -7,8 +8,21 @@ class SinginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Provider.of<AuthController>(context);
     return ElevatedButton(
-      onPressed: onPressed, 
-      child: Text("S'inscrire"));
+      onPressed: authController.isLoading ? null : onPressed, 
+      child: authController.isLoading ?
+        const Center(
+          child: SizedBox(
+            height: 20,
+            width: 20,
+            child: CircularProgressIndicator(
+              color: Colors.white,
+              strokeWidth: 2,
+            ),
+          ),
+        )
+      : const Text("Se connecter")
+    );
   }
 }
