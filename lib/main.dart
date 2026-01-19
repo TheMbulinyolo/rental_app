@@ -1,14 +1,20 @@
-import 'package:app/features/auth/presentation/pages/singin_page.dart';
+import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'features/auth/auth_controller.dart';
+import 'features/home/home_controller.dart';
 import 'package:provider/provider.dart';
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => AuthController(),
-      child: MyApp(),)
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthController()),
+        ChangeNotifierProvider(create: (_) => HomeController()),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rental App',
-      home: SinginPage(),
+      home: HomePage(),
     );
   }
 }

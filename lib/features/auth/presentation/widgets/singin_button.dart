@@ -22,7 +22,7 @@ class SinginButton extends StatelessWidget {
             ),
           ),
         )
-      : const Text("Se connecter")
+      : const Text("S'inscrire")
     );
   }
 }

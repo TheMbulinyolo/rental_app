@@ -1,3 +1,4 @@
+import 'package:app/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'singin_page.dart';
 import '../widgets/email_field.dart';
@@ -25,11 +26,15 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _submit() {
+  void _submit() async {
     final formState = _formKey.currentState;
     if (formState != null && formState.validate()) {
       final authController = Provider.of<AuthController>(context, listen: false);
-      authController.login(emailController.text, passwordController.text);
+      final success = await authController.login(emailController.text, passwordController.text);
+      if(success && mounted) {
+        Navigator.pushReplacement(context, 
+        MaterialPageRoute(builder: (_) => HomePage()));
+      }
     }
   }
 
@@ -38,7 +43,9 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: Form(
+          key: _formKey,
+          child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -50,8 +57,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 16),
             TextButton(
               onPressed: () {
-                // navigation vers Signup
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (_) => const SinginPage()),
                 );
@@ -59,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text("Vous n'avez pas de compte ? S'inscrire"),
             ),
           ],
-        ),
+        ),)
       ),
     );
   }
